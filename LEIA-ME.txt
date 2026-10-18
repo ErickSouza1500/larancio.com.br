@@ -1,0 +1,49 @@
+LARANCIO — SITE V1.0 | PRIMEIRA VERSÃO DEMONSTRATIVA
+====================================================
+
+CONTEÚDO
+- index.html: estrutura da loja
+- styles.css: cores, fontes e responsividade
+- script.js: catálogo de exemplo, busca, sacola e navegação
+- assets/: imagens locais recortadas da referência visual aprovada
+
+PUBLICAR NO GITHUB PAGES (PASSO A PASSO)
+1. Entre no github.com e faça login.
+2. Crie um repositório novo, por exemplo "larancio".
+3. Abra esse repositório e clique em "Add file" > "Upload files".
+4. Extraia o ZIP no computador antes de enviar.
+5. Envie os 3 arquivos (index.html, styles.css, script.js) e a pasta assets
+   diretamente para a RAIZ do repositório (não uma pasta adicional larancio-site).
+6. Clique em "Commit changes" para salvar.
+7. Vá em Settings > Pages.
+8. Em Build and deployment, escolha Deploy from a branch.
+9. Branch: main e Folder: / (root). Clique em Save.
+10. Aguarde a publicação e acesse o endereço indicado na seção Pages.
+
+O QUE JÁ FUNCIONA
+- Página inicial adaptada a celular, tablet e desktop
+- Banner de três slides com setas
+- Links para coleções, menu lateral
+- Busca por nome/descrição e ordenação
+- Favoritos e seletores de cor ilustrativos
+- Detalhes de produto, escolha de quantidade
+- Carrinho interativo (mantido no navegador através de localStorage)
+
+IMPORTANTE: ESTA É UMA VITRINE DEMONSTRATIVA
+- Nomes, fotografias, cores e preços são meramente ilustrativos e não
+  representam estoque, características ou valores reais da Larancio.
+- Checkout propositalmente desabilitado: não realiza pagamentos nem pedidos.
+- Não há cadastro de clientes, frete, estoque ou painel administrativo ainda.
+- Antes da abertura pública das vendas, serão necessários catálogo real,
+  políticas comerciais, backend seguro, integração de pagamento/frete,
+  segurança, tratamento de dados e testes completos.
+- As fotos foram extraídas do conceito visual gerado nesta conversa.
+  Para a loja definitiva, substitua por fotos dos produtos reais.
+
+PERSONALIZAÇÃO BÁSICA
+- Cores: início de styles.css (variáveis --terra, --linen, --olive etc.).
+- Produtos de demonstração: início de script.js, variável products.
+- Texto e categorias: index.html.
+- Imagens: pasta assets.
+
+Pasta de publicação: toda a pasta larancio-site, sem precisar instalar nada.
