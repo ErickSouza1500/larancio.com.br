@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f2eb">
+  <meta name="description" content="Conheça a essência da Larancio: a união entre ciência, criatividade e sensibilidade por trás de nossas criações.">
+  <title>Nossa essência | Larancio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --linen: #f7f2eb;
+      --linen-deep: #eee5d9;
+      --paper: #fffdf9;
+      --terracotta: #a96c56;
+      --terracotta-deep: #8a503e;
+      --olive: #7a8068;
+      --ink: #3c342e;
+      --muted: #70665d;
+      --rule: #e4d8ca;
+      --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', 'Segoe UI', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--linen); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--olive); outline-offset: 5px; }
+    .skip-link { position:absolute; left:1rem; top:-5rem; z-index:100; background:var(--paper); padding:1rem; }
+    .skip-link:focus { top:1rem; }
+    .site-wrap { width:min(1180px, calc(100% - 76px)); margin-inline:auto; }
+    .eyebrow { margin:0; color:var(--terracotta-deep); letter-spacing:.23em; font-size:.71rem; font-weight:700; text-transform:uppercase; }
+    .star { color:var(--olive); font-size:1.05rem; padding-inline:.5rem; }
+
+    .announcement { height:34px; display:flex; align-items:center; justify-content:center; padding:0 12px; background:var(--terracotta-deep); color:#fff8f2; font-size:.67rem; letter-spacing:.17em; text-transform:uppercase; text-align:center; }
+    .site-header { background:rgba(247,242,235,.98); border-bottom:1px solid var(--rule); position:relative; z-index:10; }
+    .header-inner { min-height:86px; display:flex; justify-content:space-between; align-items:center; gap:32px; }
+    .wordmark { font-family:var(--serif); font-size:2.3rem; font-weight:600; letter-spacing:-.07em; text-decoration:none; line-height:1; }
+    .wordmark .dot { color:var(--terracotta); }
+    .nav { display:flex; align-items:center; gap:36px; }
+    .nav a { position:relative; padding:8px 0; font-size:.77rem; font-weight:600; letter-spacing:.075em; text-decoration:none; transition:color .2s; }
+    .nav a:hover { color:var(--terracotta-deep); }
+    .nav a[aria-current="page"]::after { content:""; position:absolute; bottom:-5px; left:0; right:0; height:1px; background:var(--terracotta); }
+    .menu-toggle { display:none; border:1px solid var(--rule); background:transparent; width:42px; height:42px; padding:10px; cursor:pointer; border-radius:2px; }
+    .menu-toggle span { display:block; height:1.5px; background:var(--ink); margin:5px 0; }
+
+    .hero { display:grid; grid-template-columns: 1.05fr .95fr; min-height:620px; }
+    .hero-copy { display:flex; flex-direction:column; justify-content:center; padding:72px 8% 78px max(38px, calc((100vw - 1180px) / 2)); }
+    .hero-copy h1 { max-width:620px; margin:23px 0 23px; font-family:var(--serif); font-size:clamp(4.6rem,7.4vw,8.4rem); line-height:.83; font-weight:500; letter-spacing:-.055em; }
+    .hero-copy h1 em { color:var(--terracotta-deep); font-weight:400; }
+    .hero-copy .lead { font-size:.97rem; color:var(--muted); line-height:1.95; max-width:430px; margin:0; }
+    .hero-copy .line { width:48px; height:1px; background:var(--olive); margin:38px 0 24px; }
+    .hero-copy .subline { font-family:var(--serif); color:var(--olive); font-style:italic; font-size:1.65rem; margin:0; }
+    .hero-visual { position:relative; min-height:620px; overflow:hidden; background:linear-gradient(130deg, #c98f79 0%,#ad6f59 53%,#95604c 100%); }
+    .hero-photo, .portrait-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .35s ease; z-index:5; }
+    .has-image > .hero-photo, .has-image > .portrait-photo { opacity:1; }
+    .hero-visual:after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(43,29,22,.13),transparent 38%); pointer-events:none; z-index:6; }
+    .art-circle { position:absolute; width:450px; height:450px; left:50%; top:45%; transform:translate(-50%,-50%); border:1px solid rgba(255,246,232,.30); border-radius:50%; }
+    .art-circle::before { content:""; position:absolute; inset:32px; border:1px solid rgba(255,246,232,.16); border-radius:50%; }
+    .art-ground { position:absolute; width:100%; height:28%; bottom:0; background:#a06b57; box-shadow:0 -15px 45px rgba(74,42,31,.10); }
+    .candle-shadow { position:absolute; width:285px; height:65px; background:rgba(61,34,26,.20); bottom:16%; left:50%; transform:translateX(-50%); border-radius:50%; filter:blur(21px); }
+    .candle-lid { position:absolute; bottom:calc(18% + 215px); left:50%; transform:translateX(-50%); width:194px; height:27px; border-radius:50%; z-index:1; background:linear-gradient(#f5e6d3,#d3bda5); box-shadow:0 5px 4px rgba(75,55,45,.15); }
+    .candle { position:absolute; z-index:2; width:210px; height:230px; bottom:18%; left:50%; transform:translateX(-50%); border-radius:10px 10px 31px 31px / 8px 8px 23px 23px; background:linear-gradient(90deg,#d9c6ab 0%,#f2e6d3 22%,#f6ecdd 56%,#d5c2a8 100%); box-shadow:inset -9px 2px 18px rgba(81,60,42,.11), 0 20px 30px rgba(63,38,28,.13); display:flex; align-items:center; justify-content:center; }
+    .candle:after { content:""; position:absolute; inset:8px 8px auto; height:8px; border-radius:50%; background:rgba(255,255,255,.34); }
+    .candle-label { display:flex; flex-direction:column; text-align:center; width:154px; min-height:121px; justify-content:center; border:1px solid rgba(135,113,94,.30); color:#715b4c; background:rgba(255,251,242,.41); }
+    .candle-label strong { font-family:var(--serif); font-size:2.3rem; font-weight:500; letter-spacing:-.07em; }
+    .candle-label small { margin-top:11px; font-size:.45rem; font-weight:700; letter-spacing:.29em; text-transform:uppercase; }
+    .art-leaf { position:absolute; width:225px; top:18%; right:6%; opacity:.58; transform:rotate(-9deg); }
+    .hero-art-note { position:absolute; z-index:8; left:32px; bottom:26px; color:#fff2e9; font-size:.65rem; letter-spacing:.24em; text-transform:uppercase; }
+    .hero-visual.has-image .hero-art-note { display:none; }
+    .hero-visual.has-image .art-circle, .hero-visual.has-image .art-ground, .hero-visual.has-image .candle-shadow, .hero-visual.has-image .candle-lid, .hero-visual.has-image .candle, .hero-visual.has-image .art-leaf { opacity:0; }
+
+    .intro { padding:130px 0 120px; text-align:center; }
+    .intro .centered { display:block; }
+    .intro h2 { font-family:var(--serif); font-weight:500; letter-spacing:-.04em; font-size:clamp(3.15rem,5.2vw,5.9rem); line-height:.97; max-width:860px; margin:26px auto; }
+    .intro h2 em { color:var(--terracotta-deep); font-weight:400; }
+    .intro p:not(.eyebrow) { max-width:740px; margin:0 auto; color:var(--muted); font-size:1rem; line-height:2; }
+    .values { display:grid; grid-template-columns:repeat(3,1fr); margin-top:65px; text-align:left; border-top:1px solid var(--rule); }
+    .value { padding:29px 36px 0 0; }
+    .value + .value { border-left:1px solid var(--rule); padding-left:36px; }
+    .value-number { color:var(--terracotta); font-family:var(--serif); font-size:1.35rem; }
+    .value h3 { font-family:var(--serif); font-size:2.3rem; font-weight:500; margin:9px 0 9px; }
+    .value p { font-size:.87rem !important; line-height:1.9 !important; }
+
+    .founder { background:var(--paper); padding:110px 0 120px; }
+    .founder-layout { display:grid; grid-template-columns: .85fr 1.15fr; align-items:center; column-gap:clamp(55px,8vw,125px); }
+    .portrait-frame { position:relative; aspect-ratio:4/5; overflow:hidden; background:radial-gradient(circle at 48% 28%,#e9d6c5 0%,#dac1ae 46%,#bea08b 100%); }
+    .portrait-frame::before { content:""; position:absolute; width:72%; height:66%; top:19%; left:14%; border:1px solid rgba(255,250,241,.55); border-radius:50% 50% 0 0; }
+    .portrait-fallback { display:flex; position:absolute; z-index:1; inset:0; align-items:center; justify-content:center; flex-direction:column; text-align:center; gap:6px; }
+    .portrait-fallback .monogram { font-family:var(--serif); font-size:13rem; line-height:1; color:rgba(255,250,241,.47); font-weight:400; }
+    .portrait-fallback small { color:#735c4c; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; margin-top:1rem; }
+    .portrait-frame.has-image .portrait-fallback { display:none; }
+    .portrait-caption { margin:15px 0 0; text-align:right; font-size:.63rem; letter-spacing:.18em; color:var(--olive); text-transform:uppercase; }
+    .founder-copy { padding:12px 0; }
+    .founder-copy h2 { font-family:var(--serif); font-size:clamp(4.9rem,6.7vw,7.5rem); font-weight:500; letter-spacing:-.065em; line-height:.92; margin:25px 0 3px; }
+    .founder-role { color:var(--terracotta-deep); font-size:.82rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
+    .founder-quote { max-width:530px; margin:36px 0 25px; font:italic 500 clamp(1.75rem,2.8vw,2.6rem)/1.15 var(--serif); color:var(--olive); }
+    .founder-copy p.bio { color:var(--muted); font-size:.87rem; line-height:2; margin:17px 0; max-width:560px; }
+    .founder-copy p.bio strong { color:var(--ink); font-weight:600; }
+    .founder-note { margin-top:25px; padding-top:21px; border-top:1px solid var(--rule); color:var(--terracotta-deep); font-family:var(--serif); font-style:italic; font-size:1.45rem; }
+
+    .manifesto { background:var(--terracotta-deep); color:#fff9f1; padding:105px 0 110px; text-align:center; }
+    .manifesto .eyebrow { color:#e8d6be; }
+    .manifesto h2 { max-width:900px; margin:20px auto 10px; font-family:var(--serif); font-size:clamp(3.4rem,5.3vw,6rem); font-weight:400; letter-spacing:-.045em; line-height:1; }
+    .manifesto h2 em { color:#e8ccb1; }
+    .manifesto p:not(.eyebrow) { max-width:580px; margin:25px auto 0; color:#f1ded1; font-size:.92rem; line-height:1.9; }
+    .manifesto-icon { font-family:var(--serif); font-size:2.7rem; line-height:1; color:#eac6ae; }
+
+    .closing { display:grid; grid-template-columns:1fr auto; align-items:center; gap:35px; padding:93px 0 102px; }
+    .closing h2 { font-family:var(--serif); font-size:clamp(2.9rem,4.4vw,4.8rem); font-weight:500; line-height:1.02; margin:14px 0; letter-spacing:-.045em; }
+    .closing p:not(.eyebrow) { color:var(--muted); font-size:.9rem; line-height:1.8; max-width:590px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:18px; white-space:nowrap; background:var(--terracotta-deep); color:#fffaf3; padding:17px 25px; border:1px solid var(--terracotta-deep); text-decoration:none; font-size:.78rem; font-weight:600; letter-spacing:.06em; transition:background .2s, transform .2s; }
+    .btn:hover { background:#6c4033; transform:translateY(-2px); }
+    .btn svg { width:17px; height:17px; }
+    .site-footer { border-top:1px solid var(--rule); padding:35px 0 42px; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+    .footer-inner .wordmark { font-size:1.7rem; }
+    .footer-inner p { font-size:.69rem; color:var(--muted); line-height:1.7; text-align:right; }
+
+    @media (max-width: 1100px) {
+      .site-wrap { width:min(100% - 60px,1180px); }
+      .hero-copy { padding:72px 6vw; }
+      .hero-copy h1 { font-size:clamp(4.4rem,7.7vw,6.8rem); }
+      .founder-layout { grid-template-columns:.9fr 1.1fr; gap:55px; }
+    }
+    @media (max-width: 760px) {
+      .site-wrap { width:calc(100% - 38px); }
+      .announcement { height:30px; font-size:.56rem; }
+      .header-inner { min-height:75px; }
+      .wordmark { font-size:2.1rem; }
+      .menu-toggle { display:block; }
+      .nav { display:none; position:absolute; left:0; right:0; top:100%; background:var(--linen); border-bottom:1px solid var(--rule); padding:22px 20px 27px; flex-direction:column; align-items:stretch; gap:5px; box-shadow:0 14px 25px rgba(58,38,29,.07); }
+      .nav.open { display:flex; }
+      .nav a { font-size:.85rem; padding:12px 0; }
+      .nav a[aria-current="page"]::after { bottom:5px; right:auto; width:100px; }
+      .hero { grid-template-columns:1fr; }
+      .hero-copy { padding:77px 23px 62px; }
+      .hero-copy h1 { font-size:clamp(5rem,15vw,7.3rem); max-width:570px; margin:23px 0; }
+      .hero-copy .lead { font-size:.9rem; }
+      .hero-copy .line { margin:27px 0 17px; }
+      .hero-visual { min-height:500px; }
+      .intro { padding:91px 0 90px; }
+      .intro h2 { font-size:clamp(3.2rem,9vw,5.4rem); }
+      .intro p:not(.eyebrow) { font-size:.9rem; }
+      .values { grid-template-columns:1fr; gap:0; margin-top:49px; }
+      .value { padding:22px 0 24px !important; border-left:0 !important; border-bottom:1px solid var(--rule); }
+      .value h3 { margin:4px 0; }
+      .founder { padding:77px 0 88px; }
+      .founder-layout { grid-template-columns:1fr; gap:32px; }
+      .portrait-frame { max-height:560px; }
+      .founder-copy h2 { font-size:clamp(5.2rem,15vw,7.1rem); }
+      .founder-quote { margin-top:28px; }
+      .manifesto { padding:86px 0; }
+      .manifesto h2 { font-size:clamp(3.1rem,9vw,5rem); }
+      .closing { grid-template-columns:1fr; gap:20px; padding:80px 0 85px; }
+      .closing .btn { justify-self:start; }
+      .footer-inner { flex-direction:column; align-items:flex-start; }
+      .footer-inner p { text-align:left; }
+    }
+    @media (max-width: 380px) {
+      .hero-copy h1 { font-size:4.65rem; }
+      .hero-visual { min-height:435px; }
+      .art-circle { width:370px; height:370px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { transition-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="announcement">Feito para sentir <span class="star" aria-hidden="true">✦</span> Larancio</div>
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <a class="wordmark" href="index.html" aria-label="Larancio — Página inicial">larancio<span class="dot">.</span></a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="main-nav" aria-label="Menu principal">
+        <a href="index.html">Início</a>
+        <a href="index.html">Produtos</a>
+        <a href="nossa-essencia.html" aria-current="page">Nossa essência</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Muito além de um aroma</p>
+        <h1 id="hero-title">Nossa <em>essência.</em></h1>
+        <p class="lead">Acreditamos que os detalhes têm o poder de transformar espaços em refúgios, instantes em rituais e aromas em lembranças.</p>
+        <div class="line" aria-hidden="true"></div>
+        <p class="subline">Ciência, afeto e criatividade.</p>
+      </div>
+      <div class="hero-visual" id="hero-visual" aria-label="Ilustração de vela artesanal Larancio">
+        <!-- OPÇÃO: coloque uma foto em assets/atelier-larancio.jpg para substituir a ilustração automaticamente. -->
+        <img class="hero-photo" src="assets/atelier-larancio.jpg" alt="Detalhe de uma criação artesanal da Larancio" loading="eager">
+        <div class="art-circle" aria-hidden="true"></div>
+        <svg class="art-leaf" viewBox="0 0 180 310" fill="none" aria-hidden="true"><path d="M88 297 C100 234 106 141 74 20" stroke="#ede3cf" stroke-width="2"/><g fill="#d7dac0" opacity=".78"><ellipse cx="59" cy="53" rx="15" ry="35" transform="rotate(-44 59 53)"/><ellipse cx="109" cy="86" rx="14" ry="35" transform="rotate(38 109 86)"/><ellipse cx="60" cy="137" rx="17" ry="37" transform="rotate(-45 60 137)"/><ellipse cx="121" cy="176" rx="15" ry="35" transform="rotate(42 121 176)"/><ellipse cx="68" cy="222" rx="13" ry="31" transform="rotate(-43 68 222)"/></g></svg>
+        <div class="art-ground" aria-hidden="true"></div>
+        <div class="candle-shadow" aria-hidden="true"></div>
+        <div class="candle-lid" aria-hidden="true"></div>
+        <div class="candle" aria-hidden="true"><div class="candle-label"><strong>larancio.</strong><small>atelier de aromas</small></div></div>
+        <div class="hero-art-note">Da nossa essência para a sua casa</div>
+      </div>
+    </section>
+
+    <section class="intro site-wrap" aria-labelledby="intro-title">
+      <p class="eyebrow centered">01 / O que nos move</p>
+      <h2 id="intro-title">O encontro entre <em>o saber e o sentir.</em></h2>
+      <p>A Larancio é um espaço de criação em que conhecimento científico, cuidado artesanal e sensibilidade caminham juntos. Valorizamos a beleza dos detalhes e a capacidade que um aroma tem de tornar o cotidiano mais acolhedor.</p>
+      <div class="values">
+        <article class="value"><span class="value-number">01.</span><h3>Conhecimento</h3><p>A curiosidade e a ciência fazem parte da nossa maneira de pensar, experimentar e criar.</p></article>
+        <article class="value"><span class="value-number">02.</span><h3>Sensibilidade</h3><p>Acreditamos nas pequenas experiências que despertam emoções e tornam cada momento especial.</p></article>
+        <article class="value"><span class="value-number">03.</span><h3>Identidade</h3><p>Buscamos criar com intenção, valorizando a singularidade, a estética e a conexão humana.</p></article>
+      </div>
+    </section>
+
+    <section class="founder" aria-labelledby="founder-title">
+      <div class="site-wrap founder-layout">
+        <div>
+          <div class="portrait-frame" id="portrait-frame">
+            <!-- Foto real opcional: assets/bheatriz.jpg; orientação recomendada: vertical 4:5. -->
+            <img class="portrait-photo" src="assets/bheatriz.jpg" alt="Fotografia de Bheatriz, coidealizadora da Larancio" loading="lazy">
+            <div class="portrait-fallback" aria-hidden="true"><span class="monogram">B</span><small>Um espaço para a fotografia</small></div>
+          </div>
+          <p class="portrait-caption">As pessoas por trás da Larancio</p>
+        </div>
+        <div class="founder-copy">
+          <p class="eyebrow">02 / Quem faz a Larancio</p>
+          <h2 id="founder-title">Bheatriz</h2>
+          <p class="founder-role">Coidealizadora da Larancio</p>
+          <p class="founder-quote">Criar é encontrar novas formas de dar vida ao conhecimento.</p>
+          <p class="bio"><strong>Mestre em Engenharia de Processos Químicos e Bioquímicos</strong> pela Universidade Federal do Rio de Janeiro (UFRJ), bacharel em Química pelo Instituto Federal do Rio de Janeiro (IFRJ) e técnica em Química.</p>
+          <p class="bio">Há oito anos, dedica-se à pesquisa científica, com experiência em diferentes áreas, incluindo catálise, biocatálise, plantas medicinais, controle de qualidade, análises físico-químicas, valorização de biomassa, microbiologia, bioaromas e intensificação de processos.</p>
+          <p class="bio">Criativa, curiosa e apaixonada pela ciência em suas diversas formas, encontrou na Larancio a oportunidade de unir conhecimento científico, inovação e sensibilidade para transformar ideias em experiências que despertam os sentidos.</p>
+          <p class="founder-note">Uma trajetória em que a ciência também encontra espaço para criar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Para adicionar outra idealizadora futuramente, duplique o bloco .founder
+         acima, trocando o nome, a biografia, o id do título e o nome do arquivo da foto. -->
+
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div class="site-wrap">
+        <div class="manifesto-icon" aria-hidden="true">✧</div>
+        <p class="eyebrow">03 / Nosso olhar</p>
+        <h2 id="manifesto-title">Para nós, criar é uma forma de <em>cuidar.</em></h2>
+        <p>Queremos que cada detalhe convide a desacelerar, sentir e descobrir beleza nos pequenos momentos.</p>
+      </div>
+    </section>
+
+    <section class="site-wrap closing" aria-labelledby="closing-title">
+      <div><p class="eyebrow">De volta à Larancio</p><h2 id="closing-title">Conheça nossas criações.</h2><p>Agora que você conhece um pouco da nossa essência, convidamos você a explorar o universo Larancio.</p></div>
+      <a class="btn" href="index.html">Explorar produtos <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-wrap footer-inner"><a class="wordmark" href="index.html">larancio<span class="dot">.</span></a><p>Ciência, afeto e criatividade.<br>Larancio © <span id="year">2026</span></p></div></footer>
+
+  <script>
+    (function () {
+      const toggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('main-nav');
+      function closeMenu() { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menu'); }
+      toggle.addEventListener('click', () => {
+        const opening = !nav.classList.contains('open');
+        nav.classList.toggle('open', opening);
+        toggle.setAttribute('aria-expanded', String(opening));
+        toggle.setAttribute('aria-label', opening ? 'Fechar menu' : 'Abrir menu');
+      });
+      nav.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      document.querySelectorAll('.hero-photo, .portrait-photo').forEach((img) => {
+        const show = () => { if (img.naturalWidth > 0) img.parentElement.classList.add('has-image'); };
+        img.addEventListener('load', show);
+        img.addEventListener('error', () => { img.style.display = 'none'; });
+        if (img.complete) show();
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
