@@ -47,3 +47,11 @@ PERSONALIZAÇÃO BÁSICA
 - Imagens: pasta assets.
 
 Pasta de publicação: toda a pasta larancio-site, sem precisar instalar nada.
+
+NOVA SEÇÃO: SABONETES (2026-10-19)
+- A primeira vitrine após o banner reúne Laranja, Pêssego, Jasmim e Baunilha.
+- Arquivos de foto adicionados: assets/sabonete-{laranja,pessego,jasmim,baunilha}.webp
+- Preços demonstrativos: R$ 29,90, R$ 29,90, R$ 29,90 e R$ 32,90.
+- Sem bolinhas de seleção de cor nos sabonetes; os produtos antigos permanecem inalterados.
+- Modal, sacola, favoritos e pesquisa seguem funcionais (somente simulação sem checkout).
+- Publicar os arquivos alterados index.html, styles.css e script.js e as quatro imagens novas de assets.

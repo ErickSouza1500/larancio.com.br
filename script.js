@@ -3,6 +3,11 @@
 // Larancio — versão 1.0: vitrine de demonstração.
 // Substitua produtos e preços ilustrativos pelos dados reais antes de publicar uma loja comercial.
 const products = [
+  // Sabonetes: imagens do conceito visual aprovado. Sem opções de cor.
+  {id:'sabonete-laranja', name:'Sabonete Vegetal Laranja', price:29.90, category:'sabonetes', image:'assets/sabonete-laranja.webp', alt:'Sabonete Larancio Laranja com gravação e embalagem ilustrada de laranjas sobre base de travertino', description:'Sabonete vegetal de laranja da coleção Larancio, com apresentação botânica inspirada nos cítricos.'},
+  {id:'sabonete-pessego', name:'Sabonete Vegetal Pêssego', price:29.90, category:'sabonetes', image:'assets/sabonete-pessego.webp', alt:'Sabonete Larancio Pêssego com embalagem ilustrada de pêssegos sobre base de travertino', description:'Sabonete vegetal de pêssego da coleção Larancio, com apresentação em tons suaves e delicados.'},
+  {id:'sabonete-jasmim', name:'Sabonete Vegetal Jasmim', price:29.90, category:'sabonetes', image:'assets/sabonete-jasmim.webp', alt:'Sabonete Larancio Jasmim com flores brancas de centro amarelo na embalagem sobre base de travertino', description:'Sabonete vegetal de jasmim da coleção Larancio, com apresentação floral em branco e amarelo.'},
+  {id:'sabonete-baunilha', name:'Sabonete Vegetal Baunilha', price:32.90, category:'sabonetes', image:'assets/sabonete-baunilha.webp', alt:'Sabonete Larancio Baunilha com flores claras e vagens de baunilha na embalagem sobre base de travertino', description:'Sabonete vegetal de baunilha da coleção Larancio, com apresentação cremosa em tons de linho.'},
   {id:'vela-nuvem', name:'Vela Decorativa Nuvem', price:129.90, category:'velas', image:'assets/vela-nuvem.webp', alt:'Vela escultural clara formada por pequenas esferas', description:'Uma peça decorativa de linhas suaves, criada para acrescentar textura e delicadeza a qualquer ambiente.', colors:['#ead5bc','#bc6b49','#777458']},
   {id:'vela-terracota', name:'Vela Aromática Terracota', price:159.90, category:'velas', image:'assets/vela-terracota.webp', alt:'Vela acesa em recipiente âmbar com etiqueta Larancio', description:'A atmosfera acolhedora da luz da vela, em um recipiente âmbar de inspiração atemporal.', colors:['#c0a080','#bc6b49','#777458']},
   {id:'difusor', name:'Difusor de Ambiente', price:189.90, category:'decoracao', image:'assets/difusor.webp', alt:'Difusor âmbar de ambiente com varetas de madeira', description:'Um pequeno ritual de cuidado e bem-estar para compor a decoração da sua casa.', colors:['#e5ccb0','#bc6b49','#777458']},
@@ -19,23 +24,36 @@ let category='all',query='',sort='featured',activeProduct=null,slideIndex=0,slid
 
 function notify(message){const el=qs('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3000)}
 function getProduct(id){return products.find(p=>p.id===id)}
-function renderProducts(){
-  let visible=products.filter(p=>(category==='all'||p.category===category)&&(!query||`${p.name} ${p.description}`.toLocaleLowerCase('pt-BR').includes(query)));
-  if(sort==='low')visible.sort((a,b)=>a.price-b.price);if(sort==='high')visible.sort((a,b)=>b.price-a.price);if(sort==='alpha')visible.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
-  qs('#product-grid').innerHTML=visible.map(p=>`<article class="product-card">
+// Reutiliza os mesmos cartões, favoritos, modal e sacola do site original.
+// Somente sabonetes deixam de ter seletores de cores.
+function productCard(p){
+  const swatches = p.category === 'sabonetes' ? '' : `<div class="swatches" aria-label="Cores ilustrativas">${p.colors.map((c,i)=>`<button type="button" class="swatch ${i===0?'active':''}" style="--swatch:${c}" data-color="${p.id}" aria-label="Opção de cor ${i+1} (demonstrativa)" aria-pressed="${i===0}"></button>`).join('')}</div>`;
+  return `<article class="product-card">
     <div class="product-image-wrap" data-view-product="${p.id}" role="button" tabindex="0" aria-label="Ver detalhes de ${p.name}"><img src="${p.image}" alt="${p.alt}" loading="lazy"><button type="button" class="wish-button ${wishlist.includes(p.id)?'is-liked':''}" data-wish="${p.id}" aria-label="${wishlist.includes(p.id)?'Remover dos':'Adicionar aos'} favoritos" aria-pressed="${wishlist.includes(p.id)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.3 5.3 0 0 0-7.5 0L12 6.2l-1.3-1.3a5.3 5.3 0 0 0-7.5 7.5L12 21l8.8-8.6a5.3 5.3 0 0 0 0-7.5Z"/></svg></button></div>
-    <div class="product-details"><button class="product-name" type="button" data-view-product="${p.id}">${p.name}</button><div class="product-price">${BRL.format(p.price)}</div><div class="swatches" aria-label="Cores ilustrativas">${p.colors.map((c,i)=>`<button type="button" class="swatch ${i===0?'active':''}" style="--swatch:${c}" data-color="${p.id}" aria-label="Opção de cor ${i+1} (demonstrativa)" aria-pressed="${i===0}"></button>`).join('')}</div><button type="button" class="card-add" data-add-cart="${p.id}">Adicionar à sacola +</button></div>
-  </article>`).join('');
+    <div class="product-details"><button class="product-name" type="button" data-view-product="${p.id}">${p.name}</button><div class="product-price">${BRL.format(p.price)}</div>${swatches}<button type="button" class="card-add" data-add-cart="${p.id}">Adicionar à sacola +</button></div>
+  </article>`;
+}
+function renderSoapProducts(){
+  qs('#soap-grid').innerHTML = products.filter(p=>p.category==='sabonetes').map(productCard).join('');
+}
+function renderProducts(){
+  // A vitrine antiga permanece com os produtos originais na página inicial.
+  // Sabonetes também podem ser encontrados pela busca e em “Ver todos”.
+  let visible=products.filter(p=>(category==='all'? (query || p.category!=='sabonetes') : p.category===category)&&(!query||`${p.name} ${p.description}`.toLocaleLowerCase('pt-BR').includes(query)));
+  if(sort==='low')visible.sort((a,b)=>a.price-b.price);if(sort==='high')visible.sort((a,b)=>b.price-a.price);if(sort==='alpha')visible.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+  qs('#product-grid').innerHTML=visible.map(productCard).join('');
   qs('#no-results').hidden=visible.length!==0;
   qs('#catalog-count').textContent=`${visible.length} ${visible.length===1?'produto':'produtos'}`;
   const title=qs('#arrivals-title'),kicker=qs('#section-kicker');
   if(query){title.textContent=`Resultados para “${query}”`;kicker.textContent='Busca';}
+  else if(category==='sabonetes'){title.textContent='Descubra nossos sabonetes.';kicker.textContent='Coleção';}
   else if(category==='velas'){title.textContent='Velas para todos os momentos.';kicker.textContent='Coleção';}
   else if(category==='decoracao'){title.textContent='Detalhes que transformam.';kicker.textContent='Coleção';}
   else if(category==='vestuario'){title.textContent='Vestuário — em breve.';kicker.textContent='Nova coleção';}
   else{title.textContent='Descubra nossos lançamentos.';kicker.textContent='Novidades';}
   qs('#catalog-toolbar').hidden=category==='all'&&!query;
 }
+
 function renderCart(){
   const entries=Object.entries(cart).map(([id,quantity])=>({product:getProduct(id),quantity})).filter(x=>x.product);
   const count=entries.reduce((sum,item)=>sum+item.quantity,0);
@@ -66,7 +84,7 @@ document.addEventListener('click',event=>{
   if(target.closest('[data-close-drawer]')){closeDrawers();return}
   const cat=target.closest('[data-category]');if(cat){setCategory(cat.dataset.category);return}
   const all=target.closest('#show-all,#clear-filters');if(all){setCategory('all');return}
-  const wish=target.closest('[data-wish]');if(wish){const id=wish.dataset.wish;wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];safeSave('larancio-demo-wishlist',wishlist);renderProducts();notify(wishlist.includes(id)?'Adicionado aos favoritos.':'Removido dos favoritos.');return}
+  const wish=target.closest('[data-wish]');if(wish){const id=wish.dataset.wish;wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];safeSave('larancio-demo-wishlist',wishlist);renderProducts();renderSoapProducts();notify(wishlist.includes(id)?'Adicionado aos favoritos.':'Removido dos favoritos.');return}
   const add=target.closest('[data-add-cart]');if(add){addToCart(add.dataset.addCart);return}
   const view=target.closest('[data-view-product]');if(view){openProduct(view.dataset.viewProduct);return}
   const color=target.closest('[data-color]');if(color){color.parentElement.querySelectorAll('.swatch').forEach(el=>{el.classList.remove('active');el.setAttribute('aria-pressed','false')});color.classList.add('active');color.setAttribute('aria-pressed','true');notify('Cor ilustrativa selecionada.');return}
@@ -89,5 +107,5 @@ qs('#sort-select').addEventListener('change',event=>{sort=event.target.value;ren
 qs('#prev-slide').addEventListener('click',()=>cycleSlide(-1));qs('#next-slide').addEventListener('click',()=>cycleSlide(1));
 qs('#account-trigger').addEventListener('click',()=>notify('Área do cliente disponível em uma próxima etapa.'));
 qs('#year').textContent=new Date().getFullYear();
-renderProducts();renderCart();setSlide(0);
+renderSoapProducts();renderProducts();renderCart();setSlide(0);
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){slideTimer=setInterval(()=>setSlide(slideIndex+1),9000)}
