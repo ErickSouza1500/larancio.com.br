@@ -24,15 +24,17 @@
 .product-modal.is-soap-modal .product-modal-content {
   width: min(1050px, 100%);
   grid-template-columns: minmax(0, 1.35fr) minmax(335px, 1fr);
+  align-items: start;
 }
 .product-modal.is-soap-modal .product-modal-content > img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 0;
-  object-fit: contain;
+  aspect-ratio: 350 / 271;
+  object-fit: cover;
   object-position: center;
-  background: #e5d1bd;
+  align-self: start;
 }
 @media (max-width: 740px) {
   .product-modal.is-soap-modal .product-modal-content {
@@ -40,6 +42,7 @@
     max-width: 430px;
   }
   .product-modal.is-soap-modal .product-modal-content > img {
+    width: 100%;
     height: auto;
     aspect-ratio: 350 / 271;
     min-height: 0;
