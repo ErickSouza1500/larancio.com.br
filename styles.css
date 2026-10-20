@@ -19,32 +19,56 @@
 @media (max-width:740px){.soaps-section{padding-top:45px}.soap-grid .product-image-wrap{aspect-ratio:1.18}}
 
 
-/* Larancio: detalhe ampliado de sabonetes sem cortes nas fotografias.
-   Não altera a galeria, a vitrine, nem as janelas dos outros produtos. */
+/* Larancio — janela dos sabonetes, revisada.
+   A imagem preenche seu painel sem margens ou faixas brancas. As janelas
+   de velas e demais categorias conservam o visual original do site. */
 .product-modal.is-soap-modal .product-modal-content {
   width: min(1050px, 100%);
-  grid-template-columns: minmax(0, 1.35fr) minmax(335px, 1fr);
-  align-items: start;
+  grid-template-columns: minmax(0, 57%) minmax(0, 43%);
+  align-items: stretch;
+  min-height: 0;
+  max-height: calc(100dvh - 36px);
+  overflow: auto;
 }
 .product-modal.is-soap-modal .product-modal-content > img {
   display: block;
   width: 100%;
   height: auto;
   min-height: 0;
+  max-height: none;
   aspect-ratio: 350 / 271;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 50%;
   align-self: start;
+  background: none;
 }
-@media (max-width: 740px) {
+.product-modal.is-soap-modal .modal-product-details {
+  padding: 43px 35px 28px;
+  min-width: 0;
+}
+/* Em telas estreitas, a fotografia fica no topo, mantendo sua proporção. */
+@media (max-width: 1080px) {
   .product-modal.is-soap-modal .product-modal-content {
     display: block;
-    max-width: 430px;
+    width: min(520px, 100%);
+    min-height: 0;
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
   }
   .product-modal.is-soap-modal .product-modal-content > img {
     width: 100%;
     height: auto;
-    aspect-ratio: 350 / 271;
     min-height: 0;
+    aspect-ratio: 350 / 271;
+    object-fit: cover;
+    object-position: center;
+  }
+  .product-modal.is-soap-modal .modal-product-details {
+    padding: 29px 27px 31px;
+  }
+}
+@media (max-width: 420px) {
+  .product-modal.is-soap-modal .modal-product-details {
+    padding: 25px 22px 28px;
   }
 }
