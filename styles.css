@@ -72,3 +72,20 @@
     padding: 25px 22px 28px;
   }
 }
+
+
+/* Correção individual — sabonete Laranja.
+   A foto original era 489 x 403 px, com 4 px de borda clara.
+   Após o corte preciso, a foto tem 489 x 399 px.
+   Mantém a imagem completa e elimina os desajustes nas bordas
+   sem modificar Pêssego, Jasmim, Baunilha ou outros produtos. */
+.product-modal.is-soap-modal.is-orange-modal .product-modal-content > img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 489 / 399;
+  object-fit: contain;
+  object-position: center;
+  align-self: start;
+  background: transparent;
+}
